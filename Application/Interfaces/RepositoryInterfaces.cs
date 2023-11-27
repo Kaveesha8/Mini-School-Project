@@ -21,10 +21,4 @@ namespace Application.Interfaces
         IEnumerable<Subject> GetAllSubjects();
 
     }
-
-    public interface IStudentSubjectRepository
-    {
-        void AssignStudentToSubject(StudentSubject studentSubject);
-        IEnumerable<StudentSubject> GetAllStudentSubjects();
-    }
 }
