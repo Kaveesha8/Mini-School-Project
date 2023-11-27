@@ -10,6 +10,8 @@ namespace Application.Interfaces
     public interface IStudentService
     {
         void AddStudent(Student student);
+
+        void AssignSubject(Student student,Subject subject);
     }
 
     public interface ISubjectService

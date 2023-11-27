@@ -20,5 +20,10 @@ namespace Application.Services
         {
             _studentRepository.AddStudent(student);
         }
+
+        public void AssignSubject(Student student, Subject subject)
+        {
+            _studentRepository.AssignSubject(student,subject);
+        }
     }
 }

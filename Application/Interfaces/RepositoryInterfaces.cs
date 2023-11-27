@@ -10,6 +10,8 @@ namespace Application.Interfaces
     public interface IStudentRepository
     {
         void AddStudent(Student student);
+
+        void AssignSubject(Student student,Subject subject);
         Student GetStudentById(int studentId);
         IEnumerable<Student> GetAllStudents();
     }
@@ -20,11 +22,5 @@ namespace Application.Interfaces
         Subject GetSubjectById(int subjectId);
         IEnumerable<Subject> GetAllSubjects();
 
-    }
-
-    public interface IStudentSubjectRepository
-    {
-        void AssignStudentToSubject(StudentSubject studentSubject);
-        IEnumerable<StudentSubject> GetAllStudentSubjects();
     }
 }
