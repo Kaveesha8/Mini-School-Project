@@ -13,6 +13,7 @@ namespace Domain
         public int Age {  get; set; }
         public DateTime Date { get; set; }
         public string? Address { get; set; }
+        public ICollection<Subject>? Subjects { get; set; }
 
     }
 }

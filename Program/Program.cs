@@ -1,32 +1,91 @@
-﻿using Application;
+﻿using Application.Interfaces;
+using Domain;
 using Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Hosting;
-using Application.Interfaces;
 
-/*var serviceProvider=new ServiceCollection()
-    .AddDbContext<AppDbContext>(Options=>Options.UseSqlServer(ConnectionString))
-    .AddScoped<IStudentRepository,StudentRepository>()
-    .AddScoped<ISubjectRepository,SubjectRepository()
-    .AddScoped<IStudentSubjectRepository, StudentSubjectRepository>()
-    .BuildServiceProvider();*/
+namespace Program
+{
+    public class Program
+    {
+        static void Main(string[] args)
+        {
+            HostApplicationBuilder builder = new HostApplicationBuilder();
 
-//Add services to the container
-/*            object value = builder.Services.AddControllers();*/
+            builder.Services.AddScoped<AppDbContext>();
+            builder.Services.AddTransient<IStudentRepository, StudentRepository>();
 
-//Config
-/*            builder.Services.AddEndpointsApiExplorer();
-            builder.Services.AddSwaggerGen();
-            builder.Services.AddDbContext<ContentCreateDbContext>
-                (options => options.UseSqlServer(
-                    builder.Configuration.GetConnectionString("")));*/
+            using IHost host = builder.Build();
 
-HostApplicationBuilder builder = new HostApplicationBuilder();
+            host.RunAsync();
 
-builder.Services.AddSingleton<AppDbContext>();
-builder.Services.AddTransient<IStudentRepository, StudentRepository>();
+            // Resolve the repositories from the dependency injection container
+            var studentRepository = host.Services.GetRequiredService<IStudentRepository>();
+            // var subjectRepository = host.Services.GetRequiredService<ISubjectRepository>();
 
-using IHost host = builder.Build();
 
-await host.RunAsync();
+
+            // Create a list of students
+            /*            var students = new List<Student>
+                        {
+                            new Student { Id = 1, Name = "Kaveesha", Age = 24, Date = new DateTime(2023, 11, 13), Address = "Jaela" },
+                            new Student { Id = 2, Name = "Sanuja", Age = 25, Date = new DateTime(2023, 7, 15), Address = "Ambalangoda" }
+                        };
+
+                        // Add each student to the StudentRepository
+                        foreach (var student in students)
+                        {
+                            studentRepository.AddStudent(student);
+                        }*/
+
+            var student = new Student { Id = 1, Name = "Kaveesha", Age = 24, Date = new DateTime(2023, 11, 13), Address = "Jaela", Subjects= new List<Subject>() };
+            studentRepository.AddStudent(student);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            /* try
+             {
+                 using var context = new AppDbContext();
+
+                 var students = new List<Student>
+                 {
+                     new Student { Id = 1, Name = "Kaveesha", Age = 24, Date = new DateTime(2023, 11, 13), Address = "Jaela" },
+
+                     new Student { Id = 2, Name = "Sanuja", Age = 25, Date = new DateTime(2023, 7, 15), Address = "Ambalangoda" }
+                 };
+
+                 var subject = new Subject() { Id = 1, Name = "Maths", Students = students };
+
+                 context.Subjects.Add(subject);
+
+                 context.SaveChanges();
+
+                 Console.WriteLine("Students and Subjects added");
+                 Console.ReadKey();
+
+
+
+
+             }
+             catch (Exception ex)
+             {
+                 Console.WriteLine($"Error: {ex.Message}"); ;
+             }*/
+
+
+
+        }
+    }
+}

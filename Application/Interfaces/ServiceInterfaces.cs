@@ -11,4 +11,9 @@ namespace Application.Interfaces
     {
         void AddStudent(Student student);
     }
+
+    public interface ISubjectService
+    {
+        void AddSubject(Subject subject);
+    }
 }

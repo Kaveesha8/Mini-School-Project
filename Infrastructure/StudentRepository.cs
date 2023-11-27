@@ -16,10 +16,10 @@ namespace Infrastructure
             _context=context;
         }
         
-        public void AddStudent(Student student)
+        public async void AddStudent(Student student)
         {
-            _context.Set<Student>().Add(student);
-            _context.SaveChanges(); 
+            _context.Students.Add(student);
+            await _context.SaveChangesAsync(); 
         }
 
         public Student GetStudentById(int studentId)
