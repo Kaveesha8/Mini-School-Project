@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{3283DF9E-8D0D-4761-9177-73BFC6C108E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{3283DF9E-8D0D-4761-9177-73BFC6C108E0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{31150803-36D1-4106-941F-A8B69CD5CD6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{31150803-36D1-4106-941F-A8B69CD5CD6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{373BAC77-BA29-493C-96D9-809A20934CB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{373BAC77-BA29-493C-96D9-809A20934CB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Program", "Program\Program.csproj", "{06A89D76-517F-4873-95C8-A3CD35B743C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Program", "Program\Program.csproj", "{06A89D76-517F-4873-95C8-A3CD35B743C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "School.API", "School.API\School.API.csproj", "{220FBDCF-12EC-4C0F-B419-3401B525B420}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{06A89D76-517F-4873-95C8-A3CD35B743C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06A89D76-517F-4873-95C8-A3CD35B743C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06A89D76-517F-4873-95C8-A3CD35B743C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{220FBDCF-12EC-4C0F-B419-3401B525B420}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{220FBDCF-12EC-4C0F-B419-3401B525B420}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{220FBDCF-12EC-4C0F-B419-3401B525B420}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{220FBDCF-12EC-4C0F-B419-3401B525B420}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

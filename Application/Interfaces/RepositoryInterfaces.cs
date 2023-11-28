@@ -12,8 +12,9 @@ namespace Application.Interfaces
         void AddStudent(Student student);
 
         void AssignSubject(Student student,Subject subject);
-        Student GetStudentById(int studentId);
-        IEnumerable<Student> GetAllStudents();
+
+        ICollection<Student> GetStudents();
+
     }
 
     public interface ISubjectRepository

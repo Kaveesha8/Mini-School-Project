@@ -22,17 +22,6 @@ namespace Infrastructure
             _context.SaveChanges(); 
         }
 
-        public Student GetStudentById(int studentId)
-        {
-            return _context.Set<Student>().FirstOrDefault(s=>s.Id==studentId);
-
-        }
-
-        public IEnumerable<Student> GetAllStudents() 
-        {
-            return _context.Set<Student>().ToList();
-        }
-
         public void AssignSubject(Student student, Subject subject)
         {
             var s = _context.Students.First(s => s.Id == student.Id);
@@ -47,6 +36,11 @@ namespace Infrastructure
             _context.Students.Update(s);
 
             _context.SaveChanges();
+        }
+
+        public ICollection<Student> GetStudents()
+        {
+            return _context.Students.ToList();
         }
     }
 }

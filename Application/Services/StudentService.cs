@@ -25,5 +25,10 @@ namespace Application.Services
         {
             _studentRepository.AssignSubject(student,subject);
         }
+
+        public ICollection<Student> GetStudents()
+        {
+            return _studentRepository.GetStudents();
+        }
     }
 }
