@@ -22,6 +22,11 @@ namespace Infrastructure
             _context.SaveChanges(); 
         }
 
+        public void DeleteStudent(Student student)
+        {
+            _context.Students.Remove(student);
+            _context.SaveChanges();
+        }
         public void AssignSubject(Student student, Subject subject)
         {
             var s = _context.Students.First(s => s.Id == student.Id);

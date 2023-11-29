@@ -1,4 +1,5 @@
 ﻿using Application.Interfaces;
+using Application.Models;
 using Application.Services;
 using Domain;
 using Microsoft.AspNetCore.Http;
@@ -21,6 +22,28 @@ namespace School.API.Controllers
         public void AddStudent(Student student)
         {
             _studentService.AddStudent(student);
+        }
+
+        [HttpDelete(Name ="DeleteStudent")]
+        public void DeleteStudent(Student student)
+        {
+            _studentService.DeleteStudent(student);
+        }
+
+        [HttpPost( "AssignSubject")]
+        public void AssignSubject(AssignRequestModel assignRequestModel)
+        {
+            Student student = new Student()
+            {
+                Id = assignRequestModel.Student.Id
+            };
+
+            Subject subject = new Subject() 
+            {
+                Id=assignRequestModel.Subject.Id
+            };
+
+            _studentService.AssignSubject( student,subject);
         }
 
         [HttpGet(Name = "GetStudents")]

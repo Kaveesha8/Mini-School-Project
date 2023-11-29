@@ -20,7 +20,10 @@ namespace Application.Services
         {
             _studentRepository.AddStudent(student);
         }
-
+        public void DeleteStudent(Student student)
+        {
+            _studentRepository.DeleteStudent(student);
+        }
         public void AssignSubject(Student student, Subject subject)
         {
             _studentRepository.AssignSubject(student,subject);

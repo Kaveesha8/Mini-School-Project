@@ -11,6 +11,8 @@ namespace Application.Interfaces
     {
         void AddStudent(Student student);
 
+        void DeleteStudent(Student student);
+
         void AssignSubject(Student student,Subject subject);
 
         ICollection<Student> GetStudents();
