@@ -22,8 +22,11 @@ namespace Application.Interfaces
     public interface ISubjectRepository
     {
         void AddSubject(Subject subject);
-        Subject GetSubjectById(int subjectId);
-        IEnumerable<Subject> GetAllSubjects();
+        void DeleteSubject(Subject subject);
 
+        void AssignStudent(Subject subject,Student student);
+
+
+        ICollection<Subject> GetSubjects();
     }
 }

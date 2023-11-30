@@ -21,14 +21,35 @@ namespace Infrastructure
             _context.Set<Subject>().Add(subject);
             _context.SaveChanges();
         }
+        public void DeleteSubject(Subject subject)
+        {
+            _context.Subjects.Remove(subject);
+            _context.SaveChanges();
+        }
+        public void AssignStudent(Subject subject, Student student)
+        {
+            var s = _context.Subjects.First(s => s.Id == subject.Id);
 
-        public Subject GetSubjectById(int subjectId)
+            if (s.Students == null)
+            {
+                s.Students = new List<Student>();
+            }
+
+            s.Students.Add(student);
+
+            _context.Subjects.Update(s);
+
+            _context.SaveChanges();
+        }
+        public ICollection<Subject> GetSubjects()
+        {
+            return _context.Subjects.ToList();
+        }
+
+    /*    public Subject GetSubjectById(int subjectId)
         {
             return _context.Set<Subject>().FirstOrDefault(s=>s.Id==subjectId);
         }
-        public IEnumerable<Subject> GetAllSubjects()
-        {
-            return _context.Set<Subject>().ToList();
-        }
+   */
     }
 }

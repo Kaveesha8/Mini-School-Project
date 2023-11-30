@@ -23,6 +23,20 @@ namespace Application.Services
 
         }
 
-
+        public void DeleteSubject(Subject subject)
+        {
+            _subjectRepository.DeleteSubject(subject);
+        }
+        public void AssignStudent(Subject subject,Student student)
+        {
+            _subjectRepository.AssignStudent(subject, student);
+        }
+        public ICollection<Subject> GetSubjects()
+        {
+            return _subjectRepository.GetSubjects();
+        }
     }
+
+
+    
 }

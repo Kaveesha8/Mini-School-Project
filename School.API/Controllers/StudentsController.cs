@@ -16,34 +16,53 @@ namespace School.API.Controllers
         public StudentsController(IStudentService studentService)
         {
             _studentService = studentService;
+        
         }
 
         [HttpPost(Name = "AddStudent")]
-        public void AddStudent(Student student)
+        public IActionResult AddStudent([FromBody] Student student)
         {
+            if (student == null)
+            {
+                return BadRequest("Invalid student data");
+            }
             _studentService.AddStudent(student);
+
+            return Ok("Student Added Successfully");
         }
 
-        [HttpDelete(Name ="DeleteStudent")]
-        public void DeleteStudent(Student student)
+        [HttpDelete(Name = "DeleteStudent")]
+        public IActionResult DeleteStudent([FromBody] Student student)
         {
+            if(student == null)
+            {
+                return BadRequest("Invalid student data");
+            }
             _studentService.DeleteStudent(student);
+
+            return Ok("Student deleted successfully");
         }
 
-        [HttpPost( "AssignSubject")]
-        public void AssignSubject(AssignRequestModel assignRequestModel)
+        [HttpPost("AssignSubject")]
+        public IActionResult AssignSubject([FromBody] AssignRequestModel assignRequestModelStudent)
         {
+            if (assignRequestModelStudent == null)
+            {
+                return BadRequest("Invalid request data");
+            }
             Student student = new Student()
             {
-                Id = assignRequestModel.Student.Id
+                Id = assignRequestModelStudent.Student.Id
             };
 
             Subject subject = new Subject() 
             {
-                Id=assignRequestModel.Subject.Id
+                Id=assignRequestModelStudent.Subject.Id
             };
 
             _studentService.AssignSubject( student,subject);
+
+            return Ok("Subject assigned successfully");
         }
 
         [HttpGet(Name = "GetStudents")]
@@ -51,5 +70,8 @@ namespace School.API.Controllers
         {
             return _studentService.GetStudents();
         }
+
+       
     }
+  
 }
