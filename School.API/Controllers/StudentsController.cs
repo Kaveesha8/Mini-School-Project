@@ -12,15 +12,17 @@ namespace School.API.Controllers
     public class StudentsController : ControllerBase
     {
         private readonly IStudentService _studentService;
+        private readonly ISubjectService _subjectService;
 
-        public StudentsController(IStudentService studentService)
+        public StudentsController(IStudentService studentService,ISubjectService subjectService)
         {
             _studentService = studentService;
+            _subjectService = subjectService;
         
         }
 
-        [HttpPost(Name = "AddStudent")]
-        public IActionResult AddStudent([FromBody] Student student)
+        [HttpPost("AddStudent")]
+        public IActionResult AddStudent(Student student)
         {
             if (student == null)
             {
@@ -28,44 +30,54 @@ namespace School.API.Controllers
             }
             _studentService.AddStudent(student);
 
-            return Ok("Student Added Successfully");
+            return Ok(new { message = "Student Added Successfully" });
         }
 
-        [HttpDelete(Name = "DeleteStudent")]
-        public IActionResult DeleteStudent([FromBody] Student student)
+        [HttpDelete("DeleteStudent/{id}")]
+        public IActionResult DeleteStudent(int id)
         {
-            if(student == null)
+            if (id <= 0)
             {
-                return BadRequest("Invalid student data");
+                return BadRequest("Invalid student ID");
             }
-            _studentService.DeleteStudent(student);
 
-            return Ok("Student deleted successfully");
+            // Retrieve the student based on the ID
+            Student studentToDelete = _studentService.GetStudentById(id);
+
+            if (studentToDelete == null)
+            {
+                return NotFound("Student not found");
+            }
+
+            // Perform the deletion
+            _studentService.DeleteStudent(studentToDelete);
+
+            return Ok(new { message = "Student Deleted Successfully" });
         }
+
 
         [HttpPost("AssignSubject")]
-        public IActionResult AssignSubject([FromBody] AssignRequestModel assignRequestModelStudent)
+        public IActionResult AssignSubject(AssignRequestModel assignRequestModel)
         {
-            if (assignRequestModelStudent == null)
+            int studentId = assignRequestModel.StudentId;
+            int subjectId = assignRequestModel.SubjectId;
+
+            if (studentId <= 0 || subjectId <= 0)
             {
                 return BadRequest("Invalid request data");
             }
-            Student student = new Student()
-            {
-                Id = assignRequestModelStudent.Student.Id
-            };
 
-            Subject subject = new Subject() 
-            {
-                Id=assignRequestModelStudent.Subject.Id
-            };
+            // Retrieve student and subject based on the IDs (you might want to add error handling here)
+            Student student = _studentService.GetStudentById(studentId);
+            Subject subject = _subjectService.GetSubjectById(subjectId);
 
-            _studentService.AssignSubject( student,subject);
+            // Perform the logic to assign the subject to the student
+            _studentService.AssignSubject(student, subject);
 
-            return Ok("Subject assigned successfully");
+            return Ok(new { message = "Subject assigned successfully" });
         }
 
-        [HttpGet(Name = "GetStudents")]
+        [HttpGet("GetStudents")]
         public ICollection<Student> GetStudents()
         {
             return _studentService.GetStudents();

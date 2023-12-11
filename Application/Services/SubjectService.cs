@@ -35,6 +35,11 @@ namespace Application.Services
         {
             return _subjectRepository.GetSubjects();
         }
+
+        public Subject GetSubjectById(int subjectId)
+        {
+            return _subjectRepository.GetSubjectById(subjectId);
+        }
     }
 
 

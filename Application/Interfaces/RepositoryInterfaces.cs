@@ -16,6 +16,7 @@ namespace Application.Interfaces
         void AssignSubject(Student student,Subject subject);
 
         ICollection<Student> GetStudents();
+        Student GetStudentById(int studentId);
 
     }
 
@@ -26,7 +27,8 @@ namespace Application.Interfaces
 
         void AssignStudent(Subject subject,Student student);
 
-
         ICollection<Subject> GetSubjects();
+
+        Subject GetSubjectById(int studentId);
     }
 }

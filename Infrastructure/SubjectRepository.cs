@@ -46,10 +46,14 @@ namespace Infrastructure
             return _context.Subjects.ToList();
         }
 
-    /*    public Subject GetSubjectById(int subjectId)
+     
+        public Subject GetSubjectById(int subjectId)
         {
-            return _context.Set<Subject>().FirstOrDefault(s=>s.Id==subjectId);
+            var subject= _context.Subjects.FirstOrDefault(s => s.Id == subjectId);
+            return subject;
+
+
+           
         }
-   */
     }
 }

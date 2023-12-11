@@ -17,8 +17,8 @@ namespace School.API.Controllers
             _subjectService = subjectService;
         }
 
-        [HttpPost(Name = "AddSubjects")]
-        public IActionResult AddSubject([FromBody] Subject subject)
+        [HttpPost( "AddSubject")]
+        public IActionResult AddSubject( Subject subject)
         {
             {
                 if (subject == null)
@@ -27,24 +27,37 @@ namespace School.API.Controllers
                 }
                 _subjectService.AddSubject(subject);
 
-                return Ok("Subject Added Successfully");
+                return Ok(new { message = "Subject Added Successfully" });
+
+
             }
 
         }
 
-        [HttpDelete(Name = "DeleteSubject")]
-        public IActionResult DeleteStudent([FromBody] Subject subject)
+        [HttpDelete("DeleteSubject/{id}")]
+        public IActionResult DeleteSubject(int id)
         {
-            if (subject == null)
+            if (id <= 0)
             {
-                return BadRequest("Invalid student data");
+                return BadRequest("Invalid subject ID");
             }
-            _subjectService.DeleteSubject(subject);
 
-            return Ok("Subject deleted successfully");
+            // Retrieve the subject based on the ID
+            Subject subjectToDelete = _subjectService.GetSubjectById(id);
+
+            if (subjectToDelete == null)
+            {
+                return NotFound("Subject not found");
+            }
+
+            // Perform the deletion
+            _subjectService.DeleteSubject(subjectToDelete);
+
+            return Ok(new { message = "Subject Deleted Successfully" });
         }
-        [HttpPost("AssignStudent")]
-        public IActionResult AssignStudent([FromBody] AssignRequestModel AssignRequestModelSubject)
+
+      /*  [HttpPost("AssignStudent")]*/
+       /* public IActionResult AssignStudent([FromBody] AssignRequestModel AssignRequestModelSubject)
         {
             if (AssignRequestModelSubject == null)
             {
@@ -62,10 +75,12 @@ namespace School.API.Controllers
 
             _subjectService.AssignStudent(subject,student);
 
-            return Ok("Subject assigned successfully");
-        }
+            return Ok(new { message = "Subject assigned successfully" });
 
-        [HttpGet(Name = "GetSubjects")]
+       
+        }*/
+
+        [HttpGet( "GetSubjects")]
         public ICollection<Subject> GetSubjects()
         {
             return _subjectService.GetSubjects();

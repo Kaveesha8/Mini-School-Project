@@ -33,5 +33,10 @@ namespace Application.Services
         {
             return _studentRepository.GetStudents();
         }
+
+        public Student GetStudentById(int studentId)
+        {
+            return _studentRepository.GetStudentById(studentId);
+        }
     }
 }

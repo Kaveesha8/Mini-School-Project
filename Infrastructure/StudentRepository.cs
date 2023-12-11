@@ -47,5 +47,11 @@ namespace Infrastructure
         {
             return _context.Students.ToList();
         }
+
+        public Student GetStudentById(int studentId)
+        {
+            var student =  _context.Students.FirstOrDefault(s => s.Id == studentId);
+            return student;
+        }
     }
 }
