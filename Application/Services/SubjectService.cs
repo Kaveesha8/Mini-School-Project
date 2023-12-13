@@ -40,6 +40,10 @@ namespace Application.Services
         {
             return _subjectRepository.GetSubjectById(subjectId);
         }
+        public ICollection<Student> GetSubjectStudentsList(int subjectId)
+        {
+            return _subjectRepository.GetSubjectStudentsList(subjectId);
+        }
     }
 
 

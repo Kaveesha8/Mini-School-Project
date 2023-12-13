@@ -80,10 +80,19 @@ namespace School.API.Controllers
         [HttpGet("GetStudents")]
         public ICollection<Student> GetStudents()
         {
-            return _studentService.GetStudents();
+            var students = _studentService.GetStudents();
+            return students;
         }
 
-       
+
+        [HttpGet("GetStudentSubjectsList/{studentId}")]
+        public ActionResult<List<Subject>> SubjectList(int studentId)
+        {
+            ICollection<Subject> subjectList = _studentService.GetStudentSubjectsList(studentId);
+            return Ok(subjectList);
+        }
+
+ 
     }
   
 }

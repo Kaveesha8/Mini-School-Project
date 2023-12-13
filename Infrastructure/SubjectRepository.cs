@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Application.Interfaces;
 using Domain;
+using System.Data.Entity;
+
 
 namespace Infrastructure
 {
@@ -51,9 +53,18 @@ namespace Infrastructure
         {
             var subject= _context.Subjects.FirstOrDefault(s => s.Id == subjectId);
             return subject;
-
-
            
         }
+
+        public List<Student> GetSubjectStudentsList(int subjectId)
+        {
+            var subject = _context.Subjects
+            .Include(s => s.Students)
+            .Where(s => s.Id == subjectId).SelectMany(s => s.Students).ToList();
+            var studentList = subject;
+            return studentList.ToList();
+
+        }
+
     }
 }

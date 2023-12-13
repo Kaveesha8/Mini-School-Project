@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -45,7 +46,7 @@ namespace Infrastructure
 
         public ICollection<Student> GetStudents()
         {
-            return _context.Students.ToList();
+            return _context.Students.Include(s => s.Subjects).ToList();
         }
 
         public Student GetStudentById(int studentId)
@@ -53,5 +54,16 @@ namespace Infrastructure
             var student =  _context.Students.FirstOrDefault(s => s.Id == studentId);
             return student;
         }
+
+        public List<Subject> GetStudentSubjectsList(int studentId)
+        {
+            var student = _context.Students
+            .Include(s => s.Subjects)
+            .Where(s => s.Id == studentId).SelectMany(s => s.Subjects).ToList();
+            var subjectList = student;
+            return subjectList.ToList();
+
+        }
+
     }
 }

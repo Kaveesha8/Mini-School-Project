@@ -38,5 +38,11 @@ namespace Application.Services
         {
             return _studentRepository.GetStudentById(studentId);
         }
+        public ICollection<Subject> GetStudentSubjectsList(int studentId)
+        {
+            return _studentRepository.GetStudentSubjectsList(studentId);
+        }
+
+     
     }
 }

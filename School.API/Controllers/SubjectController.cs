@@ -56,35 +56,20 @@ namespace School.API.Controllers
             return Ok(new { message = "Subject Deleted Successfully" });
         }
 
-      /*  [HttpPost("AssignStudent")]*/
-       /* public IActionResult AssignStudent([FromBody] AssignRequestModel AssignRequestModelSubject)
-        {
-            if (AssignRequestModelSubject == null)
-            {
-                return BadRequest("Invalid request data");
-            }
-            Subject subject = new Subject()
-            {
-                Id = AssignRequestModelSubject.Student.Id
-            };
-
-            Student student = new Student()
-            {
-                Id = AssignRequestModelSubject.Student.Id
-            };
-
-            _subjectService.AssignStudent(subject,student);
-
-            return Ok(new { message = "Subject assigned successfully" });
-
-       
-        }*/
 
         [HttpGet( "GetSubjects")]
         public ICollection<Subject> GetSubjects()
         {
             return _subjectService.GetSubjects();
         }
+
+        [HttpGet("GetSubjectStudentsList/{subjectId}")]
+        public ActionResult<List<Student>> StudenttList(int subjectId)
+        {
+            ICollection<Student> studentList = _subjectService.GetSubjectStudentsList(subjectId);
+            return Ok(studentList);
+        }
+
 
     }
 }

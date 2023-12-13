@@ -27,11 +27,6 @@ namespace Program
             var studentService = host.Services.GetRequiredService<IStudentService>();
             var subjectService = host.Services.GetRequiredService<ISubjectService>();
 
-            /*            var student = new Student { Name = "Kaveesha", Age = 24, Date = new DateTime(2023, 11, 13), Address = "Jaela"};
-                        studentService.AddStudent(student);
-
-                        var subject = new Subject { Name = "Maths" };
-                        subjectService.AddSubject(subject);*/
 
             studentService.AssignSubject(new Student { Id = 4 }, new Subject { Id = 1 });
 

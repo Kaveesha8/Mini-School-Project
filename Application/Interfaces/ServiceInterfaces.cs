@@ -17,6 +17,8 @@ namespace Application.Interfaces
 
         ICollection<Student> GetStudents();
         Student GetStudentById(int id);
+
+        ICollection<Subject> GetStudentSubjectsList(int id);
     }
 
     public interface ISubjectService
@@ -30,5 +32,7 @@ namespace Application.Interfaces
         ICollection<Subject> GetSubjects();
 
         Subject GetSubjectById(int id);
+
+        ICollection<Student> GetSubjectStudentsList(int id);
     }
 }

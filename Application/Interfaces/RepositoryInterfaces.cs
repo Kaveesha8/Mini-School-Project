@@ -17,6 +17,7 @@ namespace Application.Interfaces
 
         ICollection<Student> GetStudents();
         Student GetStudentById(int studentId);
+        List<Subject> GetStudentSubjectsList(int studentId);
 
     }
 
@@ -30,5 +31,7 @@ namespace Application.Interfaces
         ICollection<Subject> GetSubjects();
 
         Subject GetSubjectById(int studentId);
+
+        List<Student> GetSubjectStudentsList(int subjectId);
     }
 }
